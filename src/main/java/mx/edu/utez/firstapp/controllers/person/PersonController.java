@@ -31,14 +31,8 @@ public class PersonController {
 
     @PostMapping("/")
     public ResponseEntity<CustomResponse<Person>> insert(
-            @Valid @RequestBody PersonDto person, BindingResult result
+            @Valid @RequestBody PersonDto person
     ) {
-        if (result.hasFieldErrors()) {
-            return new ResponseEntity<>(
-                    null,
-                    HttpStatus.BAD_REQUEST
-            );
-        }
         return new ResponseEntity<>(
                 this.service.insert(person.getPerson()),
                 HttpStatus.CREATED

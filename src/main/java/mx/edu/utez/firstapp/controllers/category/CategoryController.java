@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -30,8 +31,7 @@ public class CategoryController {
 
     @PostMapping("/")
     public ResponseEntity<CustomResponse<Category>> insert(
-            @Valid @RequestBody CategoryDto category,
-            @Valid BindingResult result
+            @Valid @RequestBody CategoryDto category
     ) {
         return new ResponseEntity<>(
                 this.service.insert(category.castToCategory()),
@@ -40,8 +40,7 @@ public class CategoryController {
 
     @PutMapping("/")
     public ResponseEntity<CustomResponse<Category>> update(
-            @Valid @RequestBody CategoryDto category,
-            BindingResult result
+            @Valid @RequestBody CategoryDto category
     ) {
         return new ResponseEntity<>(
                 this.service.update(category.castToCategory()),

@@ -8,7 +8,9 @@ import mx.edu.utez.firstapp.models.category.Category;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,9 +18,8 @@ import javax.validation.constraints.NotNull;
 @Getter
 public class CategoryDto {
     private Long id;
-    @NotNull
-    @NotBlank
-    @Length(min = 1, max = 150)
+    @NotEmpty(message = "Campo obligatorio")
+    @Size(min = 4, max = 150, message = "Debe ser entre 4 y 150 caracteres")
     private String name;
     private Boolean status;
 
