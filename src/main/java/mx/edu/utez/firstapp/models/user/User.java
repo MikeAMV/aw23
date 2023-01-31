@@ -1,6 +1,5 @@
 package mx.edu.utez.firstapp.models.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,12 +26,12 @@ public class User {
     private String lastAccess;
     private Boolean blocked;
     private String token;
-    @OneToOne(cascade = CascadeType.ALL)
-    @MapsId
-    @JoinColumn(name = "person_id",
-            referencedColumnName = "id", unique = true)
-    @JsonIgnore
+
+    @OneToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "id",
+    unique = true)
     private Person person;
+
     @ManyToMany(mappedBy = "users")
     private Set<Role> roles;
 }

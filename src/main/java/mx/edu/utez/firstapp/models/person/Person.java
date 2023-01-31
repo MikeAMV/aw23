@@ -1,5 +1,6 @@
 package mx.edu.utez.firstapp.models.person;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "people")
-@AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
@@ -25,7 +25,20 @@ public class Person {
     private String curp;
     private Boolean status;
     private String gender;
-    @OneToOne(mappedBy = "person")
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL, optional = false)
+    @JsonIgnore
     private User user;
+
+    public Person(Long id, String name, String surname, String lastname, String birthday, String curp, Boolean status, String gender, User user) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.lastname = lastname;
+        this.birthday = birthday;
+        this.curp = curp;
+        this.status = status;
+        this.gender = gender;
+        this.user = user;
+        this.user.setPerson(this);
+    }
 }

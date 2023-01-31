@@ -8,9 +8,7 @@ import mx.edu.utez.firstapp.models.person.Person;
 import mx.edu.utez.firstapp.models.user.User;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,9 +16,8 @@ import javax.validation.constraints.Pattern;
 @Getter
 public class PersonDto {
     private Long id;
-    @NotNull
-    @NotBlank
-    @Length(min = 3, max = 50)
+    @NotEmpty
+    @Size(min = 3, max = 50)
     private String name;
     private String surname;
     private String lastname;

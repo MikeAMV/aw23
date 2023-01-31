@@ -39,7 +39,7 @@ public class PersonService {
             );
         }
         return new CustomResponse<>(
-                this.repository.saveAndFlush(person),
+                this.repository.save(person),
                 false,
                 200,
                 "Persona registrada correctamente"
